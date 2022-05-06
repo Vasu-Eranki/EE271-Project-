@@ -34,9 +34,9 @@ reg [31:0] temp;
 begin 
 	temp = a*b;
 	casex(temp[10:0])
-	11'bxx0xxxxxxxx: multiplication = temp[24:9]; 
-	11'b00100000000: multiplication = temp[24:9]; 
-	default: multiplication = temp[24:9]+16'h1;
+	11'bxx0xxxxxxxx: multiplication = temp[25:9]; 
+	11'b00100000000: multiplication = temp[25:9]; 
+	default: multiplication = temp[25:9]+16'h1;
 	endcase 
 end
 endfunction

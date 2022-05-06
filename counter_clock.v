@@ -6,10 +6,11 @@ end
 integer i =0; 
  
 always @(posedge clk) begin 
+
 	i = i+1; 
-	if(i==65536) begin 
+	if(i==6553600) begin 
 		clk_1 =~clk_1;
 		i=0;
 	end
-end
+end	
 endmodule
