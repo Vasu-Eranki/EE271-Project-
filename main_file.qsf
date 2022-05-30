@@ -59,7 +59,7 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_P11 -to clk
-set_location_assignment PIN_A7 -to rst
+set_location_assignment PIN_C11 -to rst
 set_location_assignment PIN_D14 -to tracker[7]
 set_location_assignment PIN_W5 -to col_driver[3]
 set_location_assignment PIN_AA14 -to col_driver[2]
@@ -78,7 +78,7 @@ set_location_assignment PIN_AB11 -to row_driver[3]
 set_location_assignment PIN_AB10 -to row_driver[2]
 set_location_assignment PIN_AA9 -to row_driver[1]
 set_location_assignment PIN_AA8 -to row_driver[0]
-set_location_assignment PIN_B8 -to next_trigger
+set_location_assignment PIN_C10 -to next_trigger
 set_location_assignment PIN_F18 -to led3[0]
 set_location_assignment PIN_E20 -to led3[1]
 set_location_assignment PIN_E19 -to led3[2]

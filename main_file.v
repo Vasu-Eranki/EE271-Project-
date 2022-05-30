@@ -120,7 +120,7 @@ MAC_unit M1(clk1,mac_rst,op_data,op_data_1,result);
 sram s1(chip_select_1,write_enable,output_enable,address,data_into_sram1,data_from_sram1);
 sram s2(chip_select_2,write_enable,output_enable,address,data_into_sram2,data_from_sram2);
 integer i =0;
-always @(posedge clk2) begin 
+always @(*) begin 
 	case(current_state)
 	S0: begin
 		data_11 = 0;
@@ -140,7 +140,11 @@ always @(posedge clk2) begin
 		data_27 = 0;
 		data_28 =0; 
 		arduino_comm = 4'h1; 
-		next_state = S1;
+		next_state = S74;
+		seven_segment_display(4'h1,led);
+		seven_segment_display(4'h7,led1); 
+		seven_segment_display(4'h2,led2);
+		seven_segment_display(4'hE,led3);
 	end
 	S1: begin 
 		data_11[15:4] = 0; 
@@ -182,7 +186,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_11[11:8],led2);
 		seven_segment_display(data_11[15:12],led3);
 		arduino_comm = 4'h2; 
-		write_to_memory_1(16'h1);
+		write_to_memory_1(data_11);
 		next_state = S5; 	
 		tracker = 8'hFE;
 	end
@@ -509,25 +513,25 @@ always @(posedge clk2) begin
 
 		write_to_memory_1(data_18);
 		arduino_comm = 4'h2; 
-		next_state = S33; 
+		next_state = S72; 
 		tracker = 8'h7F;	
 	end
 	S33: begin 
 		write_high_1(3'b111); 
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		data_21[15:4] = 0; 
 		data_21[3:0] = data; 
 		seven_segment_display(data_21[3:0],led);
 		seven_segment_display(data_21[7:4],led1);
 		seven_segment_display(data_21[11:8],led2);
 		seven_segment_display(data_21[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S34; 
 		tracker = 8'hFE;
 	end
 	S34: begin 
 		close_write;
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		data_21[15:8] = 0; 
 		data_21[7:4] = data; 
 		seven_segment_display(data_21[3:0],led);
@@ -544,7 +548,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_21[7:4],led1);
 		seven_segment_display(data_21[11:8],led2);
 		seven_segment_display(data_21[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S36;
 		tracker = 8'hFE;	
 	end
@@ -555,7 +559,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_21[11:8],led2);
 		seven_segment_display(data_21[15:12],led3);
 		next_state = S37; 
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		write_to_memory_2(data_21);
 		tracker = 8'hFE;
 	end
@@ -567,7 +571,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_22[7:4],led1);
 		seven_segment_display(data_22[11:8],led2);
 		seven_segment_display(data_22[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S38;
 		tracker = 8'hFD;
 	end
@@ -579,7 +583,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_22[7:4],led1);
 		seven_segment_display(data_22[11:8],led2);
 		seven_segment_display(data_22[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S39;
 		tracker = 8'hFD;
 	end
@@ -590,7 +594,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_22[7:4],led1);
 		seven_segment_display(data_22[11:8],led2);
 		seven_segment_display(data_22[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S40;
 		tracker = 8'hFD;
 	end
@@ -600,7 +604,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_22[7:4],led1);
 		seven_segment_display(data_22[11:8],led2);
 		seven_segment_display(data_22[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S41;
 		
 		write_to_memory_2(data_22);
@@ -614,7 +618,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_23[7:4],led1);
 		seven_segment_display(data_23[11:8],led2);
 		seven_segment_display(data_23[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S42;	
 		tracker = 8'hFB;	
 	end
@@ -626,7 +630,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_23[7:4],led1);
 		seven_segment_display(data_23[11:8],led2);
 		seven_segment_display(data_23[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S43;
 		tracker = 8'hFB;
 	end
@@ -637,7 +641,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_23[7:4],led1);
 		seven_segment_display(data_23[11:8],led2);
 		seven_segment_display(data_23[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S44;
 		tracker = 8'hFB;
 	end
@@ -647,7 +651,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_23[7:4],led1);
 		seven_segment_display(data_23[11:8],led2);
 		seven_segment_display(data_23[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		next_state = S45;
 		write_to_memory_2(data_23);
 		
@@ -661,7 +665,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_24[7:4],led1);
 		seven_segment_display(data_24[11:8],led2);
 		seven_segment_display(data_24[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S46; 
 		tracker = 8'hF7;
 	end
@@ -673,7 +677,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_24[7:4],led1);
 		seven_segment_display(data_24[11:8],led2);
 		seven_segment_display(data_24[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S47; 
 		tracker = 8'hF7;
 	end
@@ -684,7 +688,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_24[7:4],led1);
 		seven_segment_display(data_24[11:8],led2);
 		seven_segment_display(data_24[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S48; 
 		tracker = 8'hF7;
 	end
@@ -694,7 +698,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_24[7:4],led1);
 		seven_segment_display(data_24[11:8],led2);
 		seven_segment_display(data_24[15:12],led3);
-		arduino_comm = 4'h3;
+		arduino_comm = 4'h4;
 		write_to_memory_2(data_24); 
 		next_state = S49;
 		tracker = 8'hF7;
@@ -707,7 +711,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_25[7:4],led1);
 		seven_segment_display(data_25[11:8],led2);
 		seven_segment_display(data_25[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S50; 
 		tracker = 8'hEF;
 	end
@@ -719,7 +723,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_25[7:4],led1);
 		seven_segment_display(data_25[11:8],led2);
 		seven_segment_display(data_25[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S51; 
 		tracker = 8'hEF;
 	end
@@ -730,7 +734,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_25[7:4],led1);
 		seven_segment_display(data_25[11:8],led2);
 		seven_segment_display(data_25[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S52; 
 		tracker = 8'hEF;	
 	end
@@ -740,7 +744,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_25[7:4],led1);
 		seven_segment_display(data_25[11:8],led2);
 		seven_segment_display(data_25[15:12],led3);
-		arduino_comm = 4'h3; 
+		arduino_comm = 4'h4; 
 		next_state = S53;
 		write_to_memory_2(data_25); 
 		
@@ -755,7 +759,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_26[7:4],led1); 
 		seven_segment_display(data_26[11:8],led2);
 		seven_segment_display(data_26[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S54; 
 		tracker = 8'hDF;
 	end
@@ -767,7 +771,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_26[7:4],led1); 
 		seven_segment_display(data_26[11:8],led2);
 		seven_segment_display(data_26[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S55;
 		tracker = 8'hDF;		
 	end
@@ -778,7 +782,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_26[7:4],led1); 
 		seven_segment_display(data_26[11:8],led2);
 		seven_segment_display(data_26[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S56; 
 		tracker = 8'hDF;
 	end
@@ -788,7 +792,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_26[7:4],led1); 
 		seven_segment_display(data_26[11:8],led2);
 		seven_segment_display(data_26[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S57;
 		write_to_memory_2(data_26);		 
 		tracker = 8'hDF;
@@ -801,7 +805,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_27[7:4],led1); 
 		seven_segment_display(data_27[11:8],led2);
 		seven_segment_display(data_27[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S58; 
 		tracker = 8'hBF;
 	end
@@ -813,7 +817,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_27[7:4],led1); 
 		seven_segment_display(data_27[11:8],led2);
 		seven_segment_display(data_27[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S59; 
 		tracker = 8'hBF;
 	end
@@ -824,7 +828,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_27[7:4],led1); 
 		seven_segment_display(data_27[11:8],led2);
 		seven_segment_display(data_27[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S60; 
 		tracker = 8'hBF;
 	end
@@ -834,7 +838,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_27[7:4],led1); 
 		seven_segment_display(data_27[11:8],led2);
 		seven_segment_display(data_27[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S61; 
 		write_to_memory_2(data_27);
 		tracker = 8'hBF;
@@ -847,7 +851,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_28[7:4],led1); 
 		seven_segment_display(data_28[11:8],led2);
 		seven_segment_display(data_28[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S62; 
 		tracker = 8'h7F;
 	end
@@ -859,7 +863,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_28[7:4],led1); 
 		seven_segment_display(data_28[11:8],led2);
 		seven_segment_display(data_28[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S63; 
 		tracker = 8'h7F;
 	end
@@ -870,7 +874,7 @@ always @(posedge clk2) begin
 		seven_segment_display(data_28[7:4],led1); 
 		seven_segment_display(data_28[11:8],led2);
 		seven_segment_display(data_28[15:12],led3);
-		arduino_comm=4'h3; 
+		arduino_comm=4'h4; 
 		next_state = S64;
 		tracker = 8'h7F;	
 	end
@@ -880,9 +884,8 @@ always @(posedge clk2) begin
 		seven_segment_display(data_28[7:4],led1); 
 		seven_segment_display(data_28[11:8],led2);
 		seven_segment_display(data_28[15:12],led3);
-		arduino_comm=4'h3; 
-		next_state = S65; 
-
+		arduino_comm=4'h4; 
+		next_state = S75; 
 		write_to_memory_2(data_28);	
 		tracker = 8'h7F;
 	end
@@ -893,6 +896,7 @@ always @(posedge clk2) begin
 		i=0;
 	end
 	S66: begin
+
 		close_write; 
 		read_high_1(i);
 		next_state = S67; 
@@ -915,17 +919,37 @@ always @(posedge clk2) begin
 		next_state = S70; 
 	end
 	S70:begin 
-		next_state = S70;
+		arduino_comm=4'h8;
+		tracker = 8'hFF;
+		next_state = S71;
 		seven_segment_display(result[3:0],led);
 		seven_segment_display(result[7:4],led1);
 		seven_segment_display(result[11:8],led2);
 		seven_segment_display(result[15:12],led3);
+	 next_state = S71;
+	 end
+	S71: next_state = S71; 
+	S72: begin
+		if(next_trigger) next_state = S33;
+		else next_state = S72; 
+	end
+	S73: begin 
+		if(next_trigger) next_state = S65;
+		else next_state = S73; 
+	end
+	S74: begin 
+		if(next_trigger) next_state = S1;
+		else next_state = S74; 
+	end
+	S75: begin 
+		if(next_trigger) next_state = S65;
+		else next_state = S75; 
 	end
 	endcase
 end
-always @(posedge clk2 or posedge rst or posedge next_trigger) begin
-	if(rst) current_state = 0;
-	current_state=next_state;
+always @(posedge clk2 or posedge rst) begin
+	if(rst) current_state <=S0; 
+	else current_state<=next_state;
 end
 
 task write_high_1(input [2:0] addr);
