@@ -17,4 +17,5 @@ Hardware used:
 - Arduino Uno 
 
 The block diagram of the image is depicted below
-https://github.com/Vasu-Eranki/EE271-Project-/blob/main/images/Block_Diagram.png
+
+<img src="https://github.com/Vasu-Eranki/EE271-Project-/blob/main/images/Block_Diagram.png">
