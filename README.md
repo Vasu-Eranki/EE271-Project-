@@ -15,3 +15,6 @@ Hardware used:
 - 16 x2 LCD 
 - 4x4 Keypad Matrix 
 - Arduino Uno 
+
+The block diagram of the image is depicted below
+https://github.com/Vasu-Eranki/EE271-Project-/blob/main/images/Block_Diagram.png
