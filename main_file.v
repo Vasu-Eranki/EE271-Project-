@@ -75,15 +75,6 @@ parameter S72 = 7'h48;
 parameter S73 = 7'h49; 
 parameter S74 = 7'h4A; 
 parameter S75 = 7'h4B; 
-parameter S76 = 7'h4C; 
-parameter S77 = 7'h4D; 
-parameter S78 = 7'h4E; 
-parameter S79 = 7'h4F; 
-parameter S80 = 7'h50; 
-parameter S81 = 7'h51; 
-parameter S82 = 7'h52; 
-parameter S83 = 7'h53; 
-
 
 reg [2:0] address;
 reg [6:0] current_state,next_state = 0; 
